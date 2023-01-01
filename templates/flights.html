@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content%}
+<section id="filter">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <h2 class="text-center">Filter Pencarian</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title">Berangkat</h5>
+                      <p class="utama">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                          </svg>
+                        <span class="mx-2">{{data_date}}</span>
+                    </p>
+                    <p class="utama">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-airplane" viewBox="0 0 16 16">
+                            <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z"/>
+                          </svg>
+                          <span class="mx-2">{{from_destination}}</span>
+                    </p>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title">Cari Berdasarkan</h5>
+                      <div class="input-group ">
+                        <input type="text" class="form-control" >
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Pilih</button>
+                          <div class="dropdown-menu">
+                            <button class="dropdown-item" id="cheap">Termurah</button>
+                            <button class="dropdown-item" id="near">Terdekat</button>
+                            <button class="dropdown-item" id="popular">Terpopuler</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              
+        </div>
+    </div>
+</section>
+
+<div class="container pembatas none" id="loader">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-grow mx-3" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow mx-3" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow mx-3" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+
+<section id="destination" class="pembatas">
+    <div class="container">
+        <div class="row justify-content-center mb-3">
+            <div class="col">
+                <h2 class="text-center">Hasil Pencarian</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center" id="content">
+            <div class="col-md-4" id="msg-col">
+                <p class="paragraf text-center" >Tidak ada</p>
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

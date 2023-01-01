@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="landing" >
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-md-6">
+                <h2 class="judul">Jelajahi luasnya dunia luar!</h2>
+                <p class="paragraf">Bepergian dan liburan dengan mudah, cepat dan tentuya tanpa ribet</p>
+            </div>
+            <div class="col-md-6">
+                <img src="https://www.transparentpng.com/thumb/travel/Eqz7Dy-travel-world-transparent-logo.png" alt="Travel">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="popular" class="pembatas">
+    <div class="container">
+        <div class="row ">
+            <div class="col">
+                <h2 class="text-center">Destinasi Terpopuler</h2>
+            </div>
+        </div>
+        <div class="row mt-3 justify-content-center" >
+            {% for data in data_popular %}
+            <div class="col-md-4 mb-3">
+                <div class="card shadow" style="width: 18rem; height:18rem;"  >
+                    <img src="{{data['img']}}" class="card-img-top image_size" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{data["to"]}}</h2>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section id="doit" class="pembatas">
+    <div class="container">
+        <div class="row-md">
+            <div class="col">
+                <h2 class="text-center">Penerbangan</h2>
+            </div>
+        </div>
+        <div class="row-md">
+            <div class="col">
+                <p class="text-center paragraf">Pilih jadwal penerbangan dan destinasi sesuai dengan jadwal kamu ya!</p>
+                <a href="{{url_for('flights_view')}}" class="btn mybtn paragraf" >Cari Destinasi!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

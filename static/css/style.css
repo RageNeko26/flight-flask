@@ -1,0 +1,79 @@
+* {
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+}
+
+
+
+body {
+    padding-top: 90px;
+
+}
+
+.utama {
+    color: rgb(104, 104, 252);
+    font-size:20px;
+}
+
+.judul {
+    font-size: 35px;
+    font-weight: 12px;
+}
+
+.paragraf {
+    font-size: 20px;
+    color: rgb(189, 189, 189);
+}
+
+.buram {
+    text-decoration: none;
+    color: rgb(189, 189, 189);
+}
+
+.buram:hover {
+    text-decoration: none;
+}
+
+.pembatas {
+    margin-top: 65px;
+}
+
+#popular_row {
+    min-height: 352px;
+    background-image: url('https://img.freepik.com/free-photo/full-shot-travel-concept-with-landmarks_23-2149153258.jpg?3?w=360');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+}
+
+.image_size {
+    width: 100%;
+    height: 200px;
+}
+
+.mybtn {
+    display: block;
+    width: 70%;
+    color: white;
+    background-color:  rgb(104, 104, 252);
+    margin: 0 auto;
+    
+}
+
+.h-100 {
+    min-height: 100px;
+}
+
+.none {
+    display: none;
+}
+
+footer {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color:  rgb(104, 104, 252);
+    color: white;
+}
+

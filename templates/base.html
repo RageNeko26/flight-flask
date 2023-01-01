@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <meta name="author" content="Rio">
+    <meta name="description" content="Simple App for implementing Python">
+    <meta name="keyword" content="flight, flask, python, vercel">
+    <meta property="og:title" content="Flight App for filtering destination">
+    <title>Flight</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light shadow-sm bg-white">
+        <div class="container">
+            <a class="navbar-brand " style=" color: rgb(104, 104, 252);" href="{{url_for('index')}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                    <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/>
+                  </svg>
+                  <span>Flight</span>
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item {{ 'active' if request.path == '/' else ''}}">
+              <a class="nav-link" href="{{url_for('index')}}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"/>
+                  </svg>
+                  <span>Home</span>
+              </a>
+            </li>
+            <li class="nav-item {{ 'active' if request.path == '/flights' else ''}}">
+              <a class="nav-link"  href="{{ url_for('flights_view') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-airplane" viewBox="0 0 16 16">
+                    <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z"/>
+                  </svg>
+                  <span>Flights</span>
+                </a>
+            </li>
+            <li class="nav-item {{ 'active' if request.path == '/profile' else ''}}">
+              <a class="nav-link" href="{{ url_for('profile') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                  </svg>
+                <span>Profile</span>
+            </a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+
+      <main class="animate__animated animate__fadeIn">
+        {% block content %} {% endblock %}
+      </main>
+
+      <footer class="pembatas">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2>Referensi</h2>
+                    <p class="fs-3"><a href="https://www.w3schools.com/" class="buram">W3School</a> </p>
+                    <p class="buram fs-3"><a href="https://ngodingdata.com/" class="buram">Ngodingdata</a></p>
+                    <p class="buram fs-3"><a href="https://www.grepper.com/" class="buram">Grepper</a> </p>
+                    <p class="buram fs-3"><a href="https://stackoverflow.com/" class="buram">Stack Overflow</a> </p>
+                    <p class="buram fs-3"><a href="https://www.traveloka.com/id-id/tiket-pesawat" class="buram">Traveloka</a> </p>
+                    <p class="buram fs-3"><a href="https://www.tiket.com" class="buram">Tiket.com</a> </p>
+                </div>
+                <div class="col-md-6">
+                    <h2>Teknologi</h2>
+                    <p class="buram fs-3"><a href="https://docs.python.org/3/" class="buram">Python</a> </p>
+                    <p class="buram fs-3"><a href="https://flask.palletsprojects.com/en/2.2.x/tutorial/" class="buram">Flask</a> </p>
+                    <p class="buram fs-3"><a href="https://getbootstrap.com/" class="buram">Bootstrap</a> </p>
+                    <p class="buram fs-3"><a href="https://api.jquery.com/" class="buram">JQuery</a> </p>
+                </div>
+            </div>
+            <hr style="color: white; background-color:white;">
+            <p class="text-center">&copy; Rio Galih Satria / 21524015</p>
+        </div>
+      </footer>
+
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+   
+
+    <script>
+      $(document).ready(function() {
+        let data = []
+        $('#cheap').click(function() {
+          $('.destination').remove()
+          data = []
+            setTimeout(function() {
+                $.ajax({
+                    url : "{{url_for('cheap')}}",
+                    type: 'GET',
+                    success: function(res) {
+                      data.push(res)
+                      
+                      $('#msg-col').remove()
+                      $('#loader').toggleClass('none')
+                      for(let i = 0; i < data.length; i++) {
+                        
+                        $('#content').append(`<div class="col-md-4 mb-3 destination animate__animated animate__fadeIn"> <div class="card shadow" style="width:18rem; height:18rem;" > <img src="${data[i].img}" class="card-img-top image_size"> <div class="card-body"> <h5 class="card-title text-center">${data[i].to} - Rp. ${data[i].price}</h5><p class="card-text paragraf text-center ">${data[i].airline}</p> </div> </div> </div>`)
+                      }
+                    }
+                })
+            },3000)
+            
+            $('#loader').toggleClass('none')
+        })
+
+        $('#near').click(function() {
+          $('.destination').remove()
+          data = []
+          setTimeout(function() {
+            $.ajax({
+              url: "{{url_for('near')}}",
+              type: 'GET',
+              success : function(res) {
+                $('#msg-col').remove()
+                $('#loader').toggleClass('none')
+                for(let i = 0; i < res.length;i++) {
+                  $('#content').append(`<div class="col-md-4 mb-3 destination animate__animated animate__fadeIn"> <div class="card shadow" style="width:18rem; height:18rem;" > <img src="${res[i].img}" class="card-img-top image_size"> <div class="card-body"> <h5 class="card-title text-center">${res[i].to} - Rp. ${res[i].price}</h5> <p class="card-text paragraf text-center ">${res[i].airline}</p></div> </div> </div>`)
+                }
+              }
+              
+            })
+           
+          },3000)
+          $('#loader').toggleClass('none')
+        })
+
+        $('#popular').click(function() {
+          $('.destination').remove()
+          data = []
+          setTimeout(function() {
+            $.ajax({
+              url: "{{url_for('popular')}}",
+              type: 'GET',
+              success : function(res) {
+                $('#msg-col').remove()
+                $('#loader').toggleClass('none')
+                for(let i = 0; i < res.length;i++) {
+                  $('#content').append(`<div class="col-md-4 mb-3 destination animate__animated animate__fadeIn"> <div class="card shadow" style="width:18rem; height:18rem;" > <img src="${res[i].img}" class="card-img-top image_size"> <div class="card-body"> <h5 class="card-title text-center">${res[i].to} - Rp. ${res[i].price}</h5> <p class="card-text paragraf text-center ">${res[i].airline}</p> </div> </div> </div>`)
+                }
+              }
+              
+            })
+           
+          },3000)
+          $('#loader').toggleClass('none')
+        })
+
+    })
+    </script>
+    
+</body>
+</html>
